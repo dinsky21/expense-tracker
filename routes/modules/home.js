@@ -1,16 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
-const ExpenseList = require('../../models/expense')
+const expenseList = require('../../models/expense')
 
 router.get('/', (req, res) => {
-  res.render('index')
-  // const userId = req.user._id
-  // ExpenseList.find({ userId })
-  //   .lean()
-  //   .sort({ _id: 'asc' }) // desc
-  //   .then((todos) => res.render('index', { todos }))
-  //   .catch((error) => console.error(error))
+  const userId = req.user._id
+  expenseList
+    .find({ userId })
+    .lean()
+    .sort({ date: 'asc' }) // desc
+    .then((expenses) => res.render('index', { expenses }))
+    .catch((error) => console.error(error))
 })
 
 module.exports = router

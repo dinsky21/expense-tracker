@@ -6,9 +6,20 @@ const expenseSchema = new Schema({
     type: String,
     required: true,
   },
-  isDone: {
-    type: Boolean,
-    default: false,
+  date: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  cost: {
+    type: Number,
+    required: true,
+  },
+  description: {
+    type: String,
   },
   userId: {
     type: Schema.Types.ObjectId,
