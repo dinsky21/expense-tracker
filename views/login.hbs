@@ -1,10 +1,12 @@
 <div class='row justify-content-center mt-5 bg-white w-75 h-75 mx-auto'>
 
-  <form action='/users/login' method='POST' class='col-10 mt-5 pt-5'>
+  <form action='/users/login' method='POST' class='col-6 mt-5 pt-5'>
     <h1 class='text-center'><a
         class='btn border-0 text-black fs-1'
       >Login</a></h1>
+    <div class="ms-3">
       {{> message}}
+    </div>
     <div class='form-group mt-4'>
       <label class='fs-5 text-dark' for='email'>Email address</label>
       <input
