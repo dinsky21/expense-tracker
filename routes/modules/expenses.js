@@ -30,26 +30,6 @@ router.post('/', async (req, res) => {
 		categoryId: createdCategory[0]._id,
 	})
 	res.redirect('/')
-	// categoryList
-	// 	.find({ category })
-	// 	.then((category) => {
-	// 		console.log(category)
-	// 		const categoryId = category._id
-	// 		expenseList
-	// 			.create({
-	// 				name,
-	// 				date,
-	// 				category,
-	// 				cost,
-	// 				description,
-	// 				userId,
-	// 				categoryId,
-	// 			})
-	// 			.then(() => {
-	// 				res.redirect('/')
-	// 			})
-	// 	})
-	// 	.catch((error) => console.log(error))
 })
 
 module.exports = router
