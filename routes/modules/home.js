@@ -2,15 +2,32 @@ const express = require('express')
 const router = express.Router()
 
 const expenseList = require('../../models/expense')
+const categoryList = require('../../models/category')
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 	const userId = req.user._id
-	expenseList
+	const parsedExpenseList = await expenseList
 		.find({ userId })
 		.lean()
-		.sort({ date: 'asc' }) // desc
-		.then((expenses) => res.render('index', { expenses }))
-		.catch((error) => console.error(error))
+		.sort({ date: 'desc' })
+	const parsedCategoryList = await categoryList.find().lean()
+	let totalAmount = 0
+	parsedExpenseList.forEach((exp) => {
+		totalAmount += exp.cost
+		parsedCategoryList.forEach((cat) => {
+			if (exp.category === cat.name) {
+				return (exp.icon = cat.icon)
+			}
+		})
+	})
+
+	res.render('index', { expenses: parsedExpenseList, totalAmount })
+	// expenseList
+	// 	.find({ userId })
+	// 	.lean()
+	// 	.sort({ date: 'asc' }) // desc
+	// 	.then((expenses) => res.render('index', { expenses }))
+	// 	.catch((error) => console.error(error))
 })
 
 // search function 動態路由，在req.query(<form>才有)中擷取keyword，再搭配filter, includes的功能呈現搜尋結果
@@ -30,26 +47,7 @@ router.get('/search', async (req, res) => {
 	} else {
 		res.render('no_results')
 	}
-
-	// restaurantList
-	//   .find()
-	//   .lean()
-	//   .then((restaurant) => {
-	//     const restaurants = restaurant.filter(
-	//       (r) =>
-	//         r.name.toLowerCase().includes(keyword) || r.category.includes(keyword)
-	//     )
-
-	//     if (restaurants.length >= 1 || keyword === '') {
-	//       res.render('index', { restaurants, keyword })
-	//     } else {
-	//       res.render('no_results')
-	//     }
-	//   })
-	//   .catch((error) => console.log(error))
 })
 
 // 匯出路由器
-module.exports = router
-
 module.exports = router
