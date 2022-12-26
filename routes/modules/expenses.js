@@ -32,4 +32,45 @@ router.post('/', async (req, res) => {
 	res.redirect('/')
 })
 
+// detail page
+router.get('/:id', async (req, res) => {
+	const _id = req.params.id
+	const userId = req.user._id
+	const createdCategory = await categoryList.find().lean()
+	const parsedExpenseList = await expenseList.findOne({ _id, userId }).lean()
+	res.render('detail', {
+		expenses: parsedExpenseList,
+		category: createdCategory,
+	})
+})
+
+// edit function
+router.get('/:id/edit', async (req, res) => {
+	const _id = req.params.id
+	const userId = req.user._id
+	const createdCategory = await categoryList.find().lean()
+	const parsedExpenseList = await expenseList.findOne({ _id, userId }).lean()
+	res.render('edit', {
+		expenses: parsedExpenseList,
+		category: createdCategory,
+	})
+})
+
+router.put('/:id', (req, res) => {
+	const _id = req.params.id
+	const userId = req.user._id
+	expenseList
+		.findOneAndUpdate({ _id, userId }, req.body)
+		.then(() => res.redirect(`/`))
+		.catch((error) => console.log(error))
+})
+
+router.delete('/:id', (req, res) => {
+	const _id = req.params.id
+	const userId = req.user._id
+	expenseList
+		.findOneAndRemove({ _id, userId })
+		.then(() => res.redirect(`/`))
+		.catch((error) => console.log(error))
+})
 module.exports = router

@@ -1,6 +1,6 @@
 <div
 	class='row fs-3 justify-content-center text-center ms-3 fw-bold text-primary'
->請修改您的支出</div>
+>{{expenses.name}}的支出明細</div>
 <div class='container d-flex justify-content-center mt-3'>
 
 	<form
@@ -21,7 +21,7 @@
 					placeholder='name'
 					name='name'
 					value='{{expenses.name}}'
-					required
+					disabled
 				/>
 			</div>
 		</div>
@@ -38,7 +38,7 @@
 					placeholder='日期'
 					name='date'
 					value='{{expenses.date}}'
-					required
+					disabled
 				/>
 			</div>
 		</div>
@@ -52,14 +52,12 @@
 					class='form-select'
 					aria-label='Default select example'
 					name='category'
-					required
+					disabled
 				>
 					<option
 						value='{{expenses.category}}'
 					>{{expenses.category}}</option>
-					{{#each category}}
-						<option value='{{this.name}}'>{{this.name}}</option>
-					{{/each}}
+
 				</select></div>
 		</div>
 
@@ -76,7 +74,7 @@
 					placeholder='花費'
 					name='cost'
 					value='{{expenses.cost}}'
-					required
+					disabled
 				/>
 			</div>
 		</div>
@@ -94,25 +92,22 @@
 					placeholder='description'
 					name='description'
 					value='{{expenses.description}}'
+					disabled
 				>{{expenses.description}}</textarea>
 
 			</div>
 		</div>
-		<div class='row justify-content-end me-3'>
+		<div class='row justify-content-end'>
 			<div class='col-12 col-md-8 mt-3 me-2'>
-				<button
+				<a
+					href='/expenses/{{expenses._id}}/edit'
 					class='col-3 btn btn-primary btn-sm m-1 p-2 fw-bold fs-6'
 					type='submit'
-				>確認修改</button>
+				>修改支出</a>
 				<a
 					href='/'
 					class='col-3 btn btn-primary btn-sm m-1 p-2 text-center fs-6'
 				>Back</a>
-
-				<button
-					type='reset'
-					class='col-3 btn btn-primary btn-sm m-1 p-2 fw-bold fs-6'
-				>重新輸入</button></div></div>
 
 	</form>
 </div>

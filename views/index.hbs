@@ -45,13 +45,13 @@
 </div>
     
 <div class="d-flex justify-content-center  text-dark mt-1"> <span class="align-top fs-5 fw-bold">總金額:</span><span class="fs-1 text-primary ms-3" name="total">{{totalAmount}}</span></div>
-<!-- restaurant list -->
 
-<div class="d-flex justify-content-center">
-<ul class="list-group list-group-flush d-flex col-md-6">
+<!-- Expenses list -->
+<div class="d-flex justify-content-center text-wrap">
+<ul class="list-group list-group-flush d-flex col-md-8">
   {{#each expenses}}
   <li class="list-group-item bg-light">
-    <div class="row align-items-center border-bottom border-primary p-2">
+    <div class="row align-items-center p-2">
       <div class="col-auto">
         <!-- todo 12/23 更換icon -->
         <i class="{{this.icon}} fa-2xl" style="color: dodgerblue;"></i>
