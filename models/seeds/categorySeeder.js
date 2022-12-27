@@ -1,7 +1,5 @@
 const User = require('../user')
-const expenseList = require('../expense')
 const categoryList = require('../category')
-const bcrypt = require('bcryptjs')
 const db = require('../../config/mongoose')
 
 const categoryIconList = [
@@ -18,11 +16,15 @@ db.on('error', () => {
 
 db.once('open', () => {
 	console.log('mongodb connected!')
-	for (k = 0; k < categoryIconList.length; k++) {
-		const { name, icon } = categoryIconList[k]
-		categoryList.create({ icon, name }).then(() => {
-			console.log('done')
-			process.exit()
+	Promise.all(
+		categoryIconList.map(async (category) => {
+			await categoryList.create({
+				name: category.name,
+				icon: category.icon,
+			})
 		})
-	}
+	).then(() => {
+		console.log('seed categories done!')
+		db.close()
+	})
 })

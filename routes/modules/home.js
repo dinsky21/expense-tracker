@@ -38,9 +38,23 @@ router.get('/search', async (req, res) => {
 			e.name.toLowerCase().includes(keyword) ||
 			e.category.includes(keyword)
 	)
+	const parsedCategoryList = await categoryList.find().lean()
+	let totalAmount = 0
+	filteredList.forEach((exp) => {
+		totalAmount += exp.cost
+		parsedCategoryList.forEach((cat) => {
+			if (exp.category === cat.name) {
+				return (exp.icon = cat.icon)
+			}
+		})
+	})
 
 	if (filteredList.length >= 1 || keyword === '') {
-		res.render('index', { expenses: filteredList })
+		res.render('index', {
+			expenses: filteredList,
+			totalAmount,
+			categories: parsedCategoryList,
+		})
 	} else {
 		res.render('no_results')
 	}

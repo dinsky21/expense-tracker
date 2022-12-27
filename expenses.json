@@ -1,0 +1,37 @@
+{
+	"expenses": [
+		{
+			"name": "PS5",
+			"category": "休閒娛樂",
+			"date": "2022-12-30",
+			"cost": 15600
+		},
+		{
+			"name": "高鐵票",
+			"category": "交通出行",
+			"date": "2022-12-03",
+			"cost": 600,
+			"description": "面試"
+		},
+		{
+			"name": "costco食材採購",
+			"category": "餐飲食品",
+			"date": "2023-02-12",
+			"cost": 3856
+		},
+		{
+			"name": "吃火鍋",
+			"category": "餐飲食品",
+			"date": "2023-03-07",
+			"cost": 780,
+			"description": "錢都"
+		},
+		{
+			"name": "Mac維修費",
+			"category": "其他",
+			"date": "2022-12-14",
+			"cost": 4500,
+			"description": "光華"
+		}
+	]
+}
