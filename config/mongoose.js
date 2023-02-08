@@ -1,8 +1,8 @@
-// require('dotenv').config({ override: true })
+require('dotenv').config({ override: true })
 const mongoose = require('mongoose')
-// mongoose.set('strictQuery', true)
-const MONGODB_URI = process.env.MONGODB_URI
-mongoose.connect(MONGODB_URI, {
+mongoose.set('strictQuery', false)
+const MONGODB_URL = process.env.MONGODB_URL
+mongoose.connect(MONGODB_URL, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 })
