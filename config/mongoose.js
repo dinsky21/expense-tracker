@@ -1,4 +1,4 @@
-require('dotenv').config({ override: true })
+// require('dotenv').config({ override: true })
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 const MONGODB_URL = process.env.MONGODB_URL
