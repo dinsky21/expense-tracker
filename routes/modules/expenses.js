@@ -17,12 +17,34 @@ router.get('/new', (req, res) => {
 
 router.post('/', async (req, res) => {
 	const userId = req.user._id
-	const { name, date, category, cost, description } = req.body
-	const createdCategory = await categoryList.find({ name: category }).lean()
+	const { name, date, cost, description } = req.body
+	const categoryFromReq = req.body.category
+	const errors = []
+	if (cost <= 0){errors.push({ message: 'Cost is required and should be positive value'})}
+	if (errors.length)
+			{
+			return categoryList
+			.find()
+			.lean()
+			.then((category) => {
+				res.render('new', {
+					errors,
+					name,
+					categoryFromReq,
+					category,
+					date,  
+					cost, 
+					description
+				})
+			})
+			.catch((error) => console.error(error))
+	}
+
+	const createdCategory = await categoryList.find({ name: categoryFromReq }).lean()
 	await expenseList.create({
 		name,
 		date,
-		category,
+		category: categoryFromReq,
 		cost,
 		description,
 		userId,

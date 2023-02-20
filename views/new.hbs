@@ -1,3 +1,4 @@
+{{> message}}
 <div
 	class='row fs-3 justify-content-center text-center ms-3 fw-bold text-primary'
 >請輸入您的支出</div>
@@ -16,6 +17,7 @@
 					id='name'
 					placeholder='name'
 					name='name'
+					value='{{name}}'
 					required
 				/>
 			</div>
@@ -32,6 +34,7 @@
 					id='date'
 					placeholder='日期'
 					name='date'
+					value='{{date}}'
 					required
 				/>
 			</div>
@@ -48,7 +51,7 @@
 					name='category'
 					required
 				>
-					<option value=''>--請選擇--</option>
+					<option value='{{categoryFromReq}}' selected>{{#if categoryFromReq}}{{categoryFromReq}}{{else}}--請選擇--{{/if}}</option>
 					{{#each category}}
 						<option value='{{this.name}}'>{{this.name}}</option>
 					{{/each}}
@@ -67,6 +70,7 @@
 					id='cost'
 					placeholder='花費'
 					name='cost'
+					value='{{cost}}'
 					required
 				/>
 			</div>
@@ -84,6 +88,7 @@
 					rows='3'
 					placeholder='description'
 					name='description'
+					value='{{description}}'
 				></textarea>
 
 			</div>
