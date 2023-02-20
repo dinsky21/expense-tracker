@@ -19,7 +19,6 @@ router.post('/', async (req, res) => {
 	const userId = req.user._id
 	const { name, date, category, cost, description } = req.body
 	const createdCategory = await categoryList.find({ name: category }).lean()
-
 	await expenseList.create({
 		name,
 		date,

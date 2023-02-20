@@ -29,7 +29,7 @@ router.post('/register', (req, res) => {
     errors.push({ message: 'email and password are required' })
   }
   if (password !== confirmPassword) {
-    errors.push({ message: 'password does not match' })
+  	errors.push({ message: 'password does not match' })
   }
   if (errors.length) {
     return res.render('register', {
